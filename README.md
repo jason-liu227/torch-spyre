@@ -49,3 +49,8 @@ This project contains 2 main folders for development:
 * `torch_spyre`: This will contain all required Python code to enable eager (currently this is being updated). This [link](https://github.com/pytorch/pytorch/tree/v2.9.1/test/cpp_extensions/open_registration_extension) describes the design principles we follows. For the most part, all that will be necessary from a Python standpoint is registering the device with PrivateUse1.
 
 * `torch_spyre/csrc`: This will be where all of the Spyre-specific implementations of PyTorch tensor ops / management functions will be.
+
+
+## Profiling
+
+Profiling support is under active development. See `torch_spyre/profiler/` — requires `USE_SPYRE_PROFILER=1` build flag and the kineto-spyre wheel (`pip install torch-2.9.1+aiu.kineto.1.1-*.whl`).

@@ -216,3 +216,12 @@ def _autoload():
     os.environ.setdefault("TORCH_SENDNN_LOG", "CRITICAL")
     os.environ.setdefault("DT_DEEPRT_VERBOSE", "-1")
     os.environ.setdefault("DTLOG_LEVEL", "error")
+
+try:
+    import torch_spyre.profiler
+except ImportError:
+    logging.warning(
+        "torch_spyre.profiler could not be imported. "
+        "Profiling support may be unavailable. "
+        "Ensure the kineto-spyre wheel is installed."
+    )
