@@ -11,4 +11,4 @@ Note:
 """
 
 # Public API (to be populated in future issues)
-__all__ = []
+__all__: list[str] = []
