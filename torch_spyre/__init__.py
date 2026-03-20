@@ -16,6 +16,7 @@ import os
 import threading
 import types
 import importlib
+import logging
 from .constants import DEVICE_NAME
 
 _runtime_init_lock = threading.Lock()
