@@ -50,7 +50,6 @@ This project contains 2 main folders for development:
 
 * `torch_spyre/csrc`: This will be where all of the Spyre-specific implementations of PyTorch tensor ops / management functions will be.
 
-
 ## Profiling
 
 Profiling support is under active development. See `torch_spyre/profiler/` — requires `USE_SPYRE_PROFILER=1` build flag and the kineto-spyre wheel (`pip install torch-2.9.1+aiu.kineto.1.1-*.whl`).
