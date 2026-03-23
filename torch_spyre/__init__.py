@@ -24,6 +24,7 @@ _runtime_init_lock = threading.Lock()
 
 logger = get_inductor_logger(__name__)
 
+
 class _SpyreImpl:
     def __init__(self):
         self._initialized = False
@@ -219,6 +220,7 @@ def _autoload():
     os.environ.setdefault("TORCH_SENDNN_LOG", "CRITICAL")
     os.environ.setdefault("DT_DEEPRT_VERBOSE", "-1")
     os.environ.setdefault("DTLOG_LEVEL", "error")
+
 
 try:
     from . import profiler
