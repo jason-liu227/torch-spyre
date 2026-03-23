@@ -16,11 +16,13 @@ import os
 import threading
 import types
 import importlib
-import logging
+
 from .constants import DEVICE_NAME
+from torch_spyre._inductor.logging_utils import get_inductor_logger
 
 _runtime_init_lock = threading.Lock()
 
+logger = get_inductor_logger(__name__)
 
 class _SpyreImpl:
     def __init__(self):
@@ -218,8 +220,6 @@ def _autoload():
     os.environ.setdefault("DT_DEEPRT_VERBOSE", "-1")
     os.environ.setdefault("DTLOG_LEVEL", "error")
 
-
-logger = logging.getLogger(__name__)
 
 try:
     from . import profiler
