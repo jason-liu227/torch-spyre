@@ -52,4 +52,4 @@ This project contains 2 main folders for development:
 
 ## Profiling
 
-Profiling support is under active development. See `torch_spyre/profiler/` — requires `USE_SPYRE_PROFILER=1` build flag and the kineto-spyre wheel (`pip install torch-2.9.1+aiu.kineto.1.1-*.whl`).
+Profiling support is under active development. See `torch_spyre/profiler/` — requires the kineto-spyre wheel (`pip install torch-2.9.1+aiu.kineto.1.1-*.whl`).
