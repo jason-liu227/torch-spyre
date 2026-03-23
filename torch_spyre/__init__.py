@@ -220,7 +220,6 @@ def _autoload():
     os.environ.setdefault("DT_DEEPRT_VERBOSE", "-1")
     os.environ.setdefault("DTLOG_LEVEL", "error")
 
-
 try:
     from . import profiler
 except ImportError as e:
