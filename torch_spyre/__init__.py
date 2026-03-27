@@ -224,6 +224,10 @@ def _autoload():
 
 try:
     from . import profiler
+
+    if not profiler.is_available():
+        profiler = None
+
 except ImportError as e:
     profiler = None
     logger.warning("torch_spyre.profiler could not be imported: %s", e)

@@ -24,5 +24,11 @@ Note:
     Requires the kineto-spyre wheel (version matching the PyTorch install).
 """
 
+
+def is_available() -> bool:
+    # more to be implemented later
+    return False
+
+
 # Public API (to be populated in future issues)
 __all__: list[str] = []
