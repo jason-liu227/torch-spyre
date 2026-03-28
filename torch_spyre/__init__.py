@@ -19,6 +19,7 @@ import importlib
 
 from .constants import DEVICE_NAME
 from torch_spyre._inductor.logging_utils import get_inductor_logger
+from . import profiler
 
 _runtime_init_lock = threading.Lock()
 
@@ -222,12 +223,5 @@ def _autoload():
     os.environ.setdefault("DTLOG_LEVEL", "error")
 
 
-try:
-    from . import profiler
-
-    if not profiler.is_available():
-        profiler = None
-
-except ImportError as e:
+if not profiler.is_available():
     profiler = None
-    logger.warning("torch_spyre.profiler could not be imported: %s", e)
