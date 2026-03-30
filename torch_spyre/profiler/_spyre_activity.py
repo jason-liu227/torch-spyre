@@ -12,8 +12,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-Note:
-    The kineto-spyre wheel must be pre-installed for profiling support:
-    Requires the kineto-spyre wheel (version matching the PyTorch install).
-"""

@@ -18,10 +18,6 @@ Spyre profiling package.
 This package provides the Python-side scaffolding for Spyre profiling
 integration. It will expose profiling utilities and hooks once fully
 implemented.
-
-Note:
-    The kineto-spyre wheel must be pre-installed for profiling support:
-    Requires the kineto-spyre wheel (version matching the PyTorch install).
 """
 
 
