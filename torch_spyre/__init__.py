@@ -18,12 +18,9 @@ import types
 import importlib
 
 from .constants import DEVICE_NAME
-from torch_spyre._inductor.logging_utils import get_inductor_logger
 from . import profiler
 
 _runtime_init_lock = threading.Lock()
-
-logger = get_inductor_logger(__name__)
 
 
 class _SpyreImpl:
