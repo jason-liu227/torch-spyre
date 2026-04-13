@@ -96,6 +96,22 @@ USE_SPYRE_PROFILER=1 python setup.py develop
 
 ## Kineto Dependency
 
+Spyre profiling depends on a specialized Kineto build. Two integration paths are supported:
+
+### Short-Term Path (Prebuilt Wheel)
+
+Install the prebuilt kineto-spyre wheel:
+
+```bash
+pip install torch-2.9.1+aiu.kineto.1.1-*.whl
+```
+
+This is the recommended approach for most users and CI environments.
+
+### Long-Term Path (Upstream Integration)
+
+To be added
+
 ## Known Limitations
 
 Please see [Pytorch #166205](https://github.com/torch-spyre/torch-spyre/issues/926?issue=pytorch%7Cpytorch%7C166205) for known limitations.
