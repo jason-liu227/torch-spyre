@@ -75,6 +75,21 @@ Profiling support requires the kineto-spyre wheel (version matching the PyTorch 
 pip install torch-(PyTorch Version)+aiu.kineto.1.1-*.whl
 ```
 
+### 2. Enable Profiling During Build
+
+Set the USE_SPYRE_PROFILER flag when building the project:
+
+```bash
+export USE_SPYRE_PROFILER=1
+pip install -e .
+```
+
+Alternatively, for a CMake-based build:
+
+```bash
+USE_SPYRE_PROFILER=1 python setup.py develop
+```
+
 ## Quick Start
 
 ## API Reference
