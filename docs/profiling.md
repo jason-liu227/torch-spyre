@@ -1,30 +1,6 @@
 #Architecture Overview
 
 ```
-+--------------------------------------+
-|        torch.profiler User API       |
-|  (User-facing profiling interface)   |
-+--------------------▲-----------------+
-                     |
-+--------------------|-----------------+
-|        torch-spyre wiring            |
-|  (Backend integration with PyTorch)  |
-+--------------------▲-----------------+
-                     |
-+--------------------|-----------------+
-|   AiuptiActivityApi (kineto-spyre)   |
-|  (Kineto-compatible activity layer)  |
-+--------------------▲-----------------+
-                     |
-+--------------------|-----------------+
-|          libAIUpti (HW)              |
-|  (Direct hardware interaction)       |
-+--------------------------------------+
-```
-
-##Detailed ASCII Architecture Diagram
-
-```
 +-----------------------------------------------------------------------+
 |                         Visualization Layer                           |
 |-----------------------------------------------------------------------|
@@ -97,15 +73,13 @@ Profiling support requires the kineto-spyre wheel (version matching the PyTorch 
 
 ```bash
 pip install torch-(PyTorch Version)+aiu.kineto.1.1-*.whl
+```
 
 ##Quick Start
-
 
 ##API Reference
 
 ##Kineto Dependency
-
-
 
 ##Known Limitations
 
