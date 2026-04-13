@@ -1,4 +1,4 @@
-#Architecture Overview
+# Architecture Overview
 
 ```
 +-----------------------------------------------------------------------+
@@ -65,7 +65,7 @@
 +-----------------------------------------------------------------------+
 ```
 
-##Installation
+## Installation
 
 ### 1. Install the kineto-spyre Wheel
 
@@ -75,16 +75,16 @@ Profiling support requires the kineto-spyre wheel (version matching the PyTorch 
 pip install torch-(PyTorch Version)+aiu.kineto.1.1-*.whl
 ```
 
-##Quick Start
+## Quick Start
 
-##API Reference
+## API Reference
 
-##Kineto Dependency
+## Kineto Dependency
 
-##Known Limitations
+## Known Limitations
 
 Please see [Pytorch #166205](https://github.com/torch-spyre/torch-spyre/issues/926?issue=pytorch%7Cpytorch%7C166205) for known limitations.
 
-##Advanced Usage
+## Advanced Usage
 
 Please see [IBM Kineto-Spyre Benchmark](https://github.com/IBM/kineto-spyre/tree/main/benchmarks) for Perfetto trace examples.
