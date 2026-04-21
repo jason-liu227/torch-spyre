@@ -24,6 +24,9 @@ def test_package_importable():
     import torch_spyre.profiler  # noqa: F401
 
 
+"TO BE WORKED ON"
+
+
 def test_supported_activities():
     """
     Ensure that supported_activities() returns at least CPU activity.
@@ -36,6 +39,9 @@ def test_supported_activities():
         "supported_activities() must return a collection"
     )
     assert ProfilerActivity.CPU in activities, "ProfilerActivity.CPU must be supported"
+
+
+"TO BE WORKED ON"
 
 
 def test_profile_spyre_context_runs():
@@ -55,6 +61,9 @@ def test_profile_spyre_context_runs():
     assert hasattr(prof, "key_averages")
 
 
+"TO BE WORKED ON"
+
+
 def test_profile_spyre_twice():
     """
     Ensure that running profile_spyre() twice in sequence does not raise errors.
@@ -66,6 +75,9 @@ def test_profile_spyre_twice():
         with profile_spyre(activities=supported_activities()):
             x = torch.randn(10, 10)
             _ = torch.matmul(x, x)
+
+
+"TO BE WORKED ON"
 
 
 def test_chrome_trace_is_valid_json(tmp_path):
