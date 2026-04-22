@@ -22,6 +22,21 @@
 |  |        (Integration with PyTorch ATen & Kineto backend)       |    |
 |  +-------------------------------▲-------------------------------+    |
 |                                  |                                    |
+|                                  |                                    |
+|  +-------------------------------+-------------------------------+    |
+|  |                  torch_spyre.profiler (Python)                |    |
+|  |---------------------------------------------------------------|    |
+|  |  __init__.py              → profile_spyre(),                  |    |
+|  |  _spyre_activity.py       → Activity registration (future)    |    |
+|  |                                           |    |
+|  +-------------------------------▲-------------------------------+    |
+|                                  | Python ↔ C++ bridge                |
+|  +-------------------------------+-------------------------------+    |
+|  |               torch_spyre/csrc/profiler (C++)                 |    |
+|  |---------------------------------------------------------------|    |
+|  |                          Populate Later                       |    |
+|  +-------------------------------▲-------------------------------+    |
+|                                  |                                    |
 |  +-------------------------------+-------------------------------+    |
 |  |                            libkineto                          |    |
 |  |          (Activity collection and trace aggregation)          |    |
@@ -110,11 +125,13 @@ This is the recommended approach for most users and CI environments.
 
 ### Long-Term Path (Upstream Integration)
 
-To be added
+To be added.
+Please see [Pytorch #166205](https://github.com/torch-spyre/torch-spyre/issues/926?issue=pytorch%7Cpytorch%7C166205) for known limitations.
 
 ## Known Limitations
 
 Please see [Pytorch #166205](https://github.com/torch-spyre/torch-spyre/issues/926?issue=pytorch%7Cpytorch%7C166205) for known limitations.
+Currently being worked on.
 
 ## Advanced Usage
 
