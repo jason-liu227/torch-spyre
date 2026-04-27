@@ -28,7 +28,7 @@
 |  |---------------------------------------------------------------|    |
 |  |  __init__.py              → profile_spyre(),                  |    |
 |  |  _spyre_activity.py       → Activity registration (future)    |    |
-|  |                                                       |    |
+|  |                                                               |    |
 |  +-------------------------------▲-------------------------------+    |
 |                                  | Python ↔ C++ bridge                |
 |  +-------------------------------+-------------------------------+    |
@@ -87,7 +87,7 @@
 Profiling support requires the kineto-spyre wheel (version matching the PyTorch install):
 
 ```bash
-pip install torch-2.9.1+aiu.kineto.1.1-*.whl
+uv pip install --no-deps --force-reinstall https://github.com/IBM/kineto-spyre/releases/download/torch-2.10.0.aiu.kineto.1.1.1/torch-2.10.0+aiu.kineto.1.1.1-cp312-cp312-linux_x86_64.whl
 ```
 
 ### 2. Enable Profiling During Build
@@ -111,7 +111,7 @@ USE_SPYRE_PROFILER=1 python setup.py develop
 
 ## Kineto Dependency
 
-Spyre profiling depends on a specialized Kineto build. Two integration paths are supported, a Short-Term Path and a Long-Term Path:
+Spyre profiling depends on a specialized Kineto build. Until upstream Kineto support is integrated, install the kineto-spyre wheel:
 
 ### Short-Term Path (Prebuilt Wheel)
 
