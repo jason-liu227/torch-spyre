@@ -20,6 +20,9 @@
 |  +-------------------------------+-------------------------------+    |
 |  |                      torch-spyre Wiring                       |    |
 |  |        (Integration with PyTorch ATen & Kineto backend)       |    |
+|  |   Profiling hooks (Kineto integration)                        |    |
+|  |   Memory APIs (torch.spyre.memory.*)                          |    |
+|  |   Device management (spyre runtime bindings)                  |    |
 |  +-------------------------------▲-------------------------------+    |
 |                                  |                                    |
 |                                  |                                    |
