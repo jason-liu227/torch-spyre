@@ -14,7 +14,6 @@
 
 BATCH_MATMUL_OP = "batchmatmul"
 IDENTITY_OP = "identity"
-MATMUL_REDUCTION_OP = "matmul"
 RESTICKIFY_OP = "ReStickifyOpHBM"
 
 DEVICE_NAME = "spyre"
@@ -47,9 +46,13 @@ SPYRE_FP32_OPS = [
     "layernormnorm",
     "identity",
     "overwrite",
+    "topkvalue",
+    "topkindex",
 ]
 
-LAYOUT_LABELS = ["INPUT", "OUTPUT", "KERNEL", "KERNEL_IDX"]
+TOPK_OPS = {"topkvalue", "topkindex"}
+
+LAYOUT_LABELS = ["OUTPUT", "KERNEL", "INPUT", "KERNEL_IDX"]
 MATMUL_LAYOUT_LABELS = ["INPUT", "KERNEL", "OUTPUT", "KERNEL_IDX"]
 
 
