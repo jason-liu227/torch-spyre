@@ -280,6 +280,12 @@ def compile_backend(pytestconfig):
 
 def pytest_configure(config):
     shared_config._PYTEST_CONFIG = config
+
+    config.addinivalue_line(
+        "markers",
+        "requires_spyre_profiler: test requires Spyre hardware "
+        "and USE_SPYRE_PROFILER=1",
+    )
     # auto-register model_<name> markers based on YAML files
     mdir = config.rootpath / "tests" / "resource" / "models"
     for p in mdir.glob("*.yaml"):
@@ -375,26 +381,11 @@ def _is_spyre_hardware_available() -> bool:
     """
     try:
         import torch
-        import torch_spyre  # noqa: F401
 
-        # Attempt to create a Spyre device. If the backend is not registered,
-        # this will raise a RuntimeError.
-        torch.device("spyre")
-        return True
-    except Exception:
+        x = torch.empty(1, device="spyre")
+        return x.device.type == "spyre"
+    except (ImportError, RuntimeError):
         return False
-
-
-@pytest.fixture(scope="session")
-def spyre_profiler_available() -> bool:
-    """
-    Fixture that returns True only when:
-      1. The environment variable USE_SPYRE_PROFILER is set to "1".
-      2. Spyre hardware is available.
-    """
-    use_profiler = os.environ.get("USE_SPYRE_PROFILER") == "1"
-    hardware_available = _is_spyre_hardware_available()
-    return use_profiler and hardware_available
 
 
 def pytest_runtest_setup(item: pytest.Item) -> None:
