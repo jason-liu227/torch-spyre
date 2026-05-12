@@ -63,5 +63,14 @@ def test_synchronize_callable():
     assert hasattr(torch, "spyre"), "torch.spyre namespace is missing"
     assert hasattr(torch.spyre, "synchronize"), "torch.spyre.synchronize() is missing"
 
-    # Call the function; it should not raise an exception
+    x = torch.randn(64, 64, device="spyre")
+    y = torch.randn(64, 64, device="spyre")
+
+    z = torch.matmul(x, y)
+
     torch.spyre.synchronize()
+
+    result = z.cpu()
+
+    assert result.numel() == 64 * 64
+    assert torch.isfinite(result).all()
