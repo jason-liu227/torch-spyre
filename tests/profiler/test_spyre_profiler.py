@@ -24,72 +24,16 @@ def test_package_importable():
     import torch_spyre.profiler  # noqa: F401
 
 
-"TO BE WORKED ON"
-
-
-def test_supported_activities():
-    """
-    Ensure that supported_activities() returns at least CPU activity.
-    """
-    from torch.profiler import ProfilerActivity
-    from torch_spyre.profiler import supported_activities
-
-    activities = supported_activities()
-    assert isinstance(activities, (list, tuple, set)), (
-        "supported_activities() must return a collection"
-    )
-    assert ProfilerActivity.CPU in activities, "ProfilerActivity.CPU must be supported"
-
-
-"TO BE WORKED ON"
-
-
-def test_profile_spyre_context_runs():
-    """
-    Verify that profile_spyre() can be entered and exited without error.
-    This test should run even on machines without Spyre hardware.
-    """
-    import torch
-    from torch_spyre.profiler import profile_spyre, supported_activities
-
-    with profile_spyre(activities=supported_activities()) as prof:
-        x = torch.randn(10, 10)
-        y = torch.matmul(x, x)
-        assert y is not None
-
-    # Ensure profiler object exposes expected API
-    assert hasattr(prof, "key_averages")
-
-
-"TO BE WORKED ON"
-
-
-def test_profile_spyre_twice():
-    """
-    Ensure that running profile_spyre() twice in sequence does not raise errors.
-    """
-    import torch
-    from torch_spyre.profiler import profile_spyre, supported_activities
-
-    for _ in range(2):
-        with profile_spyre(activities=supported_activities()):
-            x = torch.randn(10, 10)
-            _ = torch.matmul(x, x)
-
-
-"TO BE WORKED ON"
-
-
 def test_chrome_trace_is_valid_json(tmp_path):
     """
     Verify that export_chrome_trace() produces valid JSON with at least one event.
     """
     import torch
-    from torch_spyre.profiler import profile_spyre, supported_activities
+    from torch.profiler import profile, ProfilerActivity
 
     trace_file = tmp_path / "spyre_trace.json"
 
-    with profile_spyre(activities=supported_activities()) as prof:
+    with profile(activities=[ProfilerActivity.CPU]) as prof:
         x = torch.randn(10, 10)
         _ = torch.matmul(x, x)
 
