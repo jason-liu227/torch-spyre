@@ -20,6 +20,7 @@
 #include <cstdio>
 #include <memory>
 #include <string>
+#include <thread>
 #include <vector>
 
 thread_local bool profiler_enabled = false;
@@ -45,15 +46,17 @@ class ProfilerEventHandler
     : public std::enable_shared_from_this<ProfilerEventHandler> {
  public:
   static std::shared_ptr<ProfilerEventHandler> Handler;
+
   static void Register(const std::shared_ptr<ProfilerEventHandler>& handler) {
     Handler = handler;
   }
 
- public:
-  ~ProfilerEventHandler() override = default;
-  void onIterationStart(int) override {}
-  void emulateTraining(int iteration, int thread_id) override {}
+  virtual ~ProfilerEventHandler() = default;
+
+  virtual void onIterationStart(int) {}
+  virtual void emulateTraining(int iteration, int thread_id) {}
 };
+
 std::shared_ptr<ProfilerEventHandler> ProfilerEventHandler::Handler;
 
 class ProfilerEventHandlerTrampoline : public ProfilerEventHandler {
