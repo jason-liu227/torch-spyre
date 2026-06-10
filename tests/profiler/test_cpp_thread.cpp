@@ -14,49 +14,39 @@
  * limitations under the License.
  */
 
+#include <torch/csrc/autograd/profiler_kineto.h>  // @manual
 #include <torch/torch.h>
 
-#include <atomic>
 #include <cstdio>
 #include <memory>
 #include <string>
-#include <thread>
 #include <vector>
 
-thread_local bool profiler_enabled = false;
-std::atomic<bool> global_profiler_enabled{false};
-
-bool spyreIsProfilerEnabledInMainThread() {
-  return global_profiler_enabled.load();
-}
-
-void spyreEnableProfilerInChildThread() {
-  profiler_enabled = true;
-}
-
-void spyreDisableProfilerInChildThread() {
-  profiler_enabled = false;
-}
+using torch::autograd::profiler::disableProfilerInChildThread;
+using torch::autograd::profiler::enableProfilerInChildThread;
+using torch::autograd::profiler::isProfilerEnabledInMainThread;
 
 void blueprint(const std::string& text) {
   printf("\33[94m%s\33[0m\n", text.c_str());
 }
 
+/**
+ * We're emulating a C++ training engine calling into Python to allow Python
+ * code controlling how profiling should be done.
+ */
 class ProfilerEventHandler
     : public std::enable_shared_from_this<ProfilerEventHandler> {
  public:
   static std::shared_ptr<ProfilerEventHandler> Handler;
-
   static void Register(const std::shared_ptr<ProfilerEventHandler>& handler) {
     Handler = handler;
   }
 
-  virtual ~ProfilerEventHandler() = default;
-
+ public:
+  virtual ~ProfilerEventHandler() {}
   virtual void onIterationStart(int) {}
-  virtual void emulateTraining(int iteration, int thread_id) {}
+  virtual void emulateTraining(int, int) {}
 };
-
 std::shared_ptr<ProfilerEventHandler> ProfilerEventHandler::Handler;
 
 class ProfilerEventHandlerTrampoline : public ProfilerEventHandler {
@@ -99,12 +89,12 @@ void start_threads(int thread_count, int iteration_count, bool attach) {
         }
 
         if (id > 0 && attach) {
-          bool enabled = spyreIsProfilerEnabledInMainThread();
+          bool enabled = isProfilerEnabledInMainThread();
           if (enabled != enabled_in_main_thread) {
             if (enabled) {
-              spyreEnableProfilerInChildThread();
+              enableProfilerInChildThread();
             } else {
-              spyreDisableProfilerInChildThread();
+              disableProfilerInChildThread();
             }
             enabled_in_main_thread = enabled;
           }
@@ -136,4 +126,4 @@ PYBIND11_MODULE(profiler_test_cpp_thread_lib, m) {
 
   m.def("start_threads", &start_threads,
         py::call_guard<py::gil_scoped_release>());
-};
+}
