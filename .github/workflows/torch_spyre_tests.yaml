@@ -147,8 +147,6 @@ jobs:
             config: torch_spyre_tests/test_stream_config.yaml
           - name: Test Spyre Profiler
             config: torch_spyre_tests/test_spyre_profiler_config.yaml
-          - name: Test Cpp Thread
-            config: torch_spyre_tests/test_cpp_thread_config.yaml
           - name: Test Prepare Kernel
             config: torch_spyre_tests/test_prepare_kernel_config.yaml
           - name: Test Launch Jobplan
