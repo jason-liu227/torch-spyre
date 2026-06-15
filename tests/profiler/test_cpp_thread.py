@@ -108,11 +108,8 @@ class CppThreadTest(TestCase):
         device = self.device_type
 
         # Warmup pass
-        a = torch.ones(1, device=device)
-        b = torch.ones(1, device=device)
-        torch.add(a, b).cpu()
-        if hasattr(torch, device) and hasattr(getattr(torch, device), "synchronize"):
-            getattr(torch, device).synchronize()
+        self.start_profiler(False)
+        cpp.start_threads(1, IterationCount, False)
 
     def start_profiler(self, profile_memory):
         global KinetoProfiler
