@@ -15,11 +15,14 @@
  */
 
 #include <torch/csrc/autograd/profiler_kineto.h>  // @manual
+#include <torch/extension.h>
 #include <torch/torch.h>
 
+#include <atomic>
 #include <cstdio>
 #include <memory>
 #include <string>
+#include <thread>
 #include <vector>
 
 using torch::autograd::profiler::disableProfilerInChildThread;
@@ -41,9 +44,7 @@ class ProfilerEventHandler
   static void Register(const std::shared_ptr<ProfilerEventHandler>& handler) {
     Handler = handler;
   }
-
- public:
-  virtual ~ProfilerEventHandler() {}
+  virtual ~ProfilerEventHandler() = default;
   virtual void onIterationStart(int) {}
   virtual void emulateTraining(int, int) {}
 };
