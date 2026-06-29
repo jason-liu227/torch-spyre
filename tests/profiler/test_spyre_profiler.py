@@ -139,6 +139,7 @@ def test_chrome_trace_is_valid_json(tmp_path):
     assert len(data["traceEvents"]) > 0, "Trace JSON must contain at least one event"
 
 
+@unittest.skipIf(not Test_spyre, "spyre device required")
 @pytest.mark.requires_spyre_profiler
 def test_synchronize_callable():
     """
@@ -151,8 +152,8 @@ def test_synchronize_callable():
     assert hasattr(torch, "spyre"), "torch.spyre namespace is missing"
     assert hasattr(torch.spyre, "synchronize"), "torch.spyre.synchronize() is missing"
 
-    cpu_x = torch.randn(64, 64)
-    cpu_y = torch.randn(64, 64)
+    cpu_x = torch.randn(64, 64, dtype=torch.float16)
+    cpu_y = torch.randn(64, 64, dtype=torch.float16)
 
     ref = torch.matmul(cpu_x, cpu_y)
 
@@ -167,6 +168,8 @@ def test_synchronize_callable():
 
     assert result.numel() == 64 * 64
     assert torch.isfinite(result).all()
+
+    assert torch.allclose(result, ref, atol=1e-2, rtol=1e-2)
 
 
 @pytest.mark.requires_spyre_profiler
