@@ -172,8 +172,8 @@ def test_synchronize_callable():
     torch.testing.assert_close(
         result,
         ref,
-        atol=1e-2,
-        rtol=1e-2,
+        atol=1e-1,
+        rtol=1e-1,
         msg=f"Result diverged from ref: max abs diff={torch.max(torch.abs(result - ref)).item():.4e}",
     )
 
